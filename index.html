@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Movie-API</title>
+    <!-- css stylesheet -->
+    <link rel="stylesheet" href="main.css" />
+  </head>
+  <body>
+    <!-- header section -->
+    <div class="header">
+      <div class="logo">
+        <div class="container">
+          <p>Movie<span>Search</span></p>
+        </div>
+      </div>
+
+      <!-- end header section -->
+      <!-- search field -->
+      <div class="search-container">
+        <div class="search-field">
+          <h3>Search Movie:</h3>
+          <input
+            type="text"
+            class="form-control"
+            id="movie-search-box"
+            placeholder="Enter Movie Title..."
+          />
+          <button class="search-btn" id="search-btn" onclick="fetchMovieData()">
+            Search
+          </button>
+        </div>
+      </div>
+      <!-- end search field -->
+      <!-- result display -->
+      <div class="container">
+        <div class="result-container">
+          <div class="result-grid" id="result-grid">
+            <!-- movie info here -->
+            <!-- <div class="movie-poster">
+              <img src="medium-cover.jpg" alt="movie poster" />
+            </div> -->
+            <!-- <div class="movie-info">
+              <h3 class="movie-title">Guardians of the Galaxy vol 2</h3>
+              <ul class="additional-movie-info">
+                <li class="Year">Year:</li>
+                <li class="rated">Rated:</li>
+                <li class="released">Released:</li>
+              </ul>
+            </div> -->
+          </div>
+        </div>
+      </div>
+      <!-- end results container -->
+    </div>
+
+    <!-- js -->
+    <script src="script.js"></script>
+  </body>
+</html>
