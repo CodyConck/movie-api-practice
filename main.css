@@ -92,6 +92,10 @@ img {
 .result-container {
   padding: 3rem 0;
 }
+
+.hide-result-grid {
+  display: none;
+}
 /* movie poster */
 .movie-poster img {
   max-width: 300px;
