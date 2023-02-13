@@ -52,16 +52,29 @@ function displayMovieDetails(movies) {
 function loadAdditionalDetails() {
   const searchedMovies = resultGrid.querySelectorAll(".result-container");
   searchedMovies.forEach((movie) => {
-    console.log(movie.dataset.id);
+    //console.log(movie.dataset.id);
     // getting IMDB ID from above but need to work on async func to return additionalDetails below
-    async () => {
+    searchBtn.addEventListener("click", async () => {
       searchBox.value = "";
       const result = await fetch(
         `http://www.omdbapi.com/?i=${movie.dataset.id}&apikey=9c901ace`
       );
       const additionalDetails = await result.json();
       // this is not firing
-      console.log(additionalDetails);
-    };
+      displayAdditionalDetails(additionalDetails);
+    });
   });
+}
+
+function displayAdditionalDetails(details) {
+  resultGrid.innerHTML = `
+  <div class="movie-info">
+  <h3 class="movie-title">${details.Title}</h3>
+  <ul class="additional-movie-info">
+    <li class="rated">Rated: ${details.Rated}</li>
+    <li class="released">Released: ${details.Released}</li>
+  </ul>
+</div>
+  
+  `;
 }
