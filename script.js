@@ -1,4 +1,5 @@
-// const movieSearchBox = document.getElementById("movie-search-box");
+// 9346343d6766b81b076dfa97f8364b9e
+
 const searchBox = document.getElementById("movie-search-box");
 const resultGrid = document.getElementById("result-grid");
 const searchBtn = document.getElementById("search-btn");
@@ -10,7 +11,7 @@ async function fecthMovieData(searchTerm) {
   const movieData = await res.json();
   //console.log(movieData);
   if (movieData.Response == "True") displayMovieDetails(movieData.Search);
-  // console.log(movieData);
+  // console.log(movieData.Search);
 }
 
 function findMovies() {
@@ -51,30 +52,43 @@ function displayMovieDetails(movies) {
 
 function loadAdditionalDetails() {
   const searchedMovies = resultGrid.querySelectorAll(".result-container");
-  searchedMovies.forEach((movie) => {
-    //console.log(movie.dataset.id);
-    // getting IMDB ID from above but need to work on async func to return additionalDetails below
-    searchBtn.addEventListener("click", async () => {
-      searchBox.value = "";
-      const result = await fetch(
-        `http://www.omdbapi.com/?i=${movie.dataset.id}&apikey=9c901ace`
-      );
-      const additionalDetails = await result.json();
-      // this is not firing
-      displayAdditionalDetails(additionalDetails);
-    });
+  //console.log(searchedMovies);
+  searchedMovies.forEach(async (movie) => {
+    let movieId = movie.dataset.id;
+    // console.log(movieId);
+    searchBox.value = "";
+    const result = await fetch(
+      `http://www.omdbapi.com/?i=${movieId}&apikey=9c901ace`
+    );
+    const moreInfo = await result.json();
+    console.log(moreInfo);
   });
 }
 
-function displayAdditionalDetails(details) {
-  resultGrid.innerHTML = `
-  <div class="movie-info">
-  <h3 class="movie-title">${details.Title}</h3>
-  <ul class="additional-movie-info">
-    <li class="rated">Rated: ${details.Rated}</li>
-    <li class="released">Released: ${details.Released}</li>
-  </ul>
-</div>
-  
-  `;
-}
+// function loadAdditionalDetails() {
+//   const searchedMovies = resultGrid.querySelectorAll(".result-container");
+//   searchedMovies.forEach((movie) => {
+//     //console.log(movie.dataset.id);
+//     searchBtn.addEventListener("click", async () => {
+//       searchBox.value = "";
+//       const result = await fetch(
+//         `http://www.omdbapi.com/?i=${movie.dataset.id}&apikey=9c901ace`
+//       );
+//       const additionalDetails = await result.json();
+//       displayAdditionalDetails(additionalDetails);
+//     });
+//   });
+// }
+
+// function displayAdditionalDetails(details) {
+//   resultGrid.innerHTML = `
+//   <div class="movie-info">
+//   <h3 class="movie-title">${details.Title}</h3>
+//   <ul class="additional-movie-info">
+//     <li class="rated">Rated: ${details.Rated}</li>
+//     <li class="released">Released: ${details.Released}</li>
+//   </ul>
+// </div>
+
+//   `;
+// }
