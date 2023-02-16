@@ -27,24 +27,25 @@ function findMovies() {
 }
 
 function displayMovieDetails(movies) {
+  // console.log(movies);
   resultGrid.innerHTML = "";
   for (let index = 0; index < movies.length; index++) {
     let movieDisplay = document.createElement("div");
-    // console.log(movieDisplay);
+    //console.log(movieDisplay);
     movieDisplay.dataset.id = movies[index].imdbID;
     movieDisplay.classList.add("result-container");
 
-    movieDisplay.innerHTML = `
-    <div class="movie-poster">
-             <img src="${movies[index].Poster}" alt="movie poster" />
-           </div>
-           <div class="movie-info">
-             <h3 class="movie-title">${movies[index].Title}</h3>
-             <ul class="additional-movie-info">
-               <li class="Year">Year: ${movies[index].Year}</li>
-             </ul>
-          </div>
-    `;
+    // movieDisplay.innerHTML = `
+    // <div class="movie-poster">
+    //          <img src="${movies[index].Poster}" alt="movie poster" />
+    //        </div>
+    //        <div class="movie-info">
+    //          <h3 class="movie-title">${movies[index].Title}</h3>
+    //          <ul class="additional-movie-info">
+    //            <li class="Year">Year: ${movies[index].Year}</li>
+    //          </ul>
+    //       </div>
+    // `;
     resultGrid.appendChild(movieDisplay);
   }
   loadAdditionalDetails();
@@ -52,7 +53,7 @@ function displayMovieDetails(movies) {
 
 function loadAdditionalDetails() {
   const searchedMovies = resultGrid.querySelectorAll(".result-container");
-  //console.log(searchedMovies);
+  // console.log(searchedMovies);
   searchedMovies.forEach(async (movie) => {
     let movieId = movie.dataset.id;
     // console.log(movieId);
@@ -61,8 +62,65 @@ function loadAdditionalDetails() {
       `http://www.omdbapi.com/?i=${movieId}&apikey=9c901ace`
     );
     const moreInfo = await result.json();
-    console.log(moreInfo);
+    //console.log(moreInfo);
+    displayAdditionalDetails(moreInfo);
   });
+}
+
+function displayAdditionalDetails(details) {
+  // console.log(details);
+
+  resultGrid.innerHTML = "";
+
+  let movieInfoArray = Object.values(details);
+  console.log(movieInfoArray.length);
+  for (let index = 0; index < movieInfoArray.length; index++) {
+    let display = document.createElement("div");
+    // console.log(display);
+    display.classList.add("result-container");
+
+    resultGrid.appendChild(display);
+
+    resultGrid.innerHTML = `
+    <div class="movie-poster">
+               <img src="${details.Poster}" alt="movie poster" />
+             </div>
+             <div class="movie-info">
+               <h3 class="movie-title">${details.Title}</h3>
+                 <ul class="additional-movie-info">
+                   <li class="Year">Year: ${details.Year}</li>
+                   <li class="rated">Rated: ${details.Rated}</li>
+                   <li class="released">Released: ${details.Released}</li>
+                 </ul>
+             </div>
+    `;
+  }
+  // {
+
+  //   //console.log(details[title]);
+  //   //console.log(`There are ${details[movieKey]} ${movieKey}`);
+  //   // let additionalDetails = details[movieKey];
+  //   // console.log(additionalDetails);
+  //   let finalDisplay = document.createElement("div");
+  //   //console.log(finalDisplay);
+  //   finalDisplay.dataset.id = details[title];
+  //   finalDisplay.classList.add("result-container");
+
+  //   resultGrid.appendChild(finalDisplay);
+
+  //   resultGrid.innerHTML = `
+  //   <div class="movie-poster">
+  //             <img src="${details.Poster}" alt="movie poster" />
+  //           </div>
+  //           <div class="movie-info">
+  //             <h3 class="movie-title">${details.Title}</h3>
+  //               <ul class="additional-movie-info">
+  //                 <li class="Year">Year: ${details.Year}</li>
+  //                 <li class="rated">Rated: ${details.Rated}</li>
+  //                 <li class="released">Released: ${details.Released}</li>
+  //               </ul>
+  //           </div> `;
+  // });
 }
 
 // function loadAdditionalDetails() {
