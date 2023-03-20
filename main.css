@@ -132,3 +132,9 @@ img {
   font-size: 0.9rem;
   opacity: 0.9;
 }
+
+.movie-info .runtime {
+  margin-left: 0.4rem;
+  font-size: 0.9rem;
+  opacity: 0.9;
+}

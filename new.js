@@ -28,8 +28,7 @@ function findMovies() {
 
 function displayMovieDetails(details) {
   //console.log(details);
-
-  //loop thru details and create new div to display each movie returned
+  resultGrid.innerHTML = "";
   for (let i = 0; i < details.length; i++) {
     let display = document.createElement("div");
 
