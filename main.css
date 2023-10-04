@@ -103,12 +103,14 @@ img {
   border: 4px solid #fff;
 }
 .movie-info {
+  font-family: sans-serif;
   text-align: center;
   color: #fff;
   padding-top: 3rem;
 }
 /* movie info */
 .movie-title {
+  font-family: Georgia, "Times New Roman", Times, serif;
   font-size: 2rem;
   color: var(--blue-color);
 }
@@ -137,4 +139,8 @@ img {
   margin-left: 0.4rem;
   font-size: 0.9rem;
   opacity: 0.9;
+}
+
+.movie-info .plot {
+  color: var(--blue-color);
 }
